@@ -2,51 +2,100 @@ import React, { useState } from 'react';
 import './CarbonCalculator.css';
 
 
+const CAR_BRANDS = [
+  {
+    name: "ACURA",
+    models: [
+      { name: "COMPACT", emission: 160 },
+      { name: "MID-SIZE", emission: 230 },
+      { name: "FULL-SIZE", emission: 250 }
+    ]
+  },
+  {
+    name: "AUDI",
+    models: [
+      { name: "COMPACT", emission: 200 },
+      { name: "MID-SIZE", emission: 230 },
+      { name: "FULL-SIZE", emission: 250 }
+    ]
+  },
+  {
+    name: "Other",
+    models: [
+      { name: "COMPACT", emission: 180 },
+      { name: "MID-SIZE", emission: 210 },
+      { name: "FULL-SIZE", emission: 230 }
+    ]
+  }
+];
+
 function CarbonCalculator() {
-  const [vehicleType, setVehicleType] = useState('');
-  const [drivingHours, setDrivingHours] = useState(0);
-  const [carbonFootprint, setCarbonFootprint] = useState(0);
+  const [brand, setBrand] = useState("");
+  const [model, setModel] = useState("");
+  const [distance, setDistance] = useState("");
+  const [result, setResult] = useState("");
 
-  const handleVehicleTypeChange = (event) => {
-    setVehicleType(event.target.value);
-  };
+  function handleBrandChange(event) {
+    setBrand(event.target.value);
+    setModel("");
+  }
 
-  const handleDrivingHoursChange = (event) => {
-    setDrivingHours(event.target.value);
-  };
+  function handleModelChange(event) {
+    setModel(event.target.value);
+  }
 
-  const handleCalculateClick = () => {
-    let carbonPerHour;
-    if (vehicleType === 'car') {
-      carbonPerHour = 10;
-    } else if (vehicleType === 'truck') {
-      carbonPerHour = 20;
+  function handleDistanceChange(event) {
+    setDistance(event.target.value);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const carModel = CAR_BRANDS.find(b => b.name === brand)?.models.find(m => m.name === model);
+    if (carModel && distance) {
+      const carbonEmission = carModel.emission;
+      const carbonTotal = carbonEmission * distance;
+      setResult(`${carbonTotal} g`);
     } else {
-      return;
+      setResult("Please select brand, model and distance");
     }
-
-    setCarbonFootprint(carbonPerHour * drivingHours);
-  };
+  }
 
   return (
     <div>
-      <label>
-        Choose a vehicle type:
-        <select value={vehicleType} onChange={handleVehicleTypeChange}>
-          <option value="">--Please choose an option--</option>
-          <option value="car">Small Car</option>
-          <option value="truck">Large Truck</option>
-        </select>
-      </label>
-      <br />
-      <label>
-        How many hours did you drive today?
-        <input type="number" value={drivingHours} onChange={handleDrivingHoursChange} />
-      </label>
-      <br />
-      <button onClick={handleCalculateClick}>Calculate Carbon Footprint</button>
-      <br />
-      <p>Your carbon footprint: {carbonFootprint} g CO2e</p>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Choose a vehicle type:
+          <select value={brand} onChange={handleBrandChange}>
+            <option value="">--Select Brand--</option>
+            {CAR_BRANDS.map(b => (
+              <option key={b.name} value={b.name}>
+                {b.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        {brand && (
+          <label>
+            Choose a car model:
+            <select value={model} onChange={handleModelChange}>
+              <option value="">--Select Model--</option>
+              {CAR_BRANDS.find(b => b.name === brand)?.models.map(m => (
+                <option key={m.name} value={m.name}>
+                  {m.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+        {model && (
+          <label>
+            Distance driven (km):
+            <input type="number" value={distance} onChange={handleDistanceChange} />
+          </label>
+        )}
+        <button type="submit">Calculate</button>
+      </form>
+      {result && <p>Carbon emission: {result}</p>}
     </div>
   );
 }
