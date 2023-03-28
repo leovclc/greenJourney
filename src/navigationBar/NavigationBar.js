@@ -16,7 +16,11 @@ function NavigationBar() {
         </li> 
         <li>
           <a href="/other">Other</a>
-        </li>       
+        </li>  
+        <li>
+          <a href="/information">Information</a>
+        </li>
+           
       </ul>
     </nav>
   );

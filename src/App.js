@@ -7,7 +7,8 @@ import CarbonCalculator from './carbonCalculator/CarbonCalculator';
 import Weather from './demoAPI/Weather';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Quiz from './quiz/Quiz';
-
+import HomePage from './pages/HomePage';
+import Information from './pages/Information';
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
       <Switch>
         <Route exact path="/">
           <div>            
-            <Weather></Weather>            
+             <HomePage></HomePage>
+             <Information></Information>      
           </div>
         </Route>
 
@@ -33,7 +35,11 @@ function App() {
         </Route>
         
         <Route path="/other">
-          
+        <Weather></Weather> 
+        </Route>
+
+        <Route path="/information">
+        
         </Route>
 
       </Switch>
