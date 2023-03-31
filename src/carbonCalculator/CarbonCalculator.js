@@ -50,7 +50,7 @@ function CarbonCalculator() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const carModel = CAR_BRANDS.find(b => b.name === brand)?.models.find(m => m.name === model);
+    const carModel = CAR_BRANDS.find(b => b.name === brand)?.models.find(m => m.name === model);//find the model
     if (carModel && distance) {
       const carbonEmission = carModel.emission;
       const carbonTotal = carbonEmission * distance;
@@ -62,18 +62,20 @@ function CarbonCalculator() {
 
   return (
     <div>
+
       <form onSubmit={handleSubmit}>
         <label>
           Choose a vehicle type:
           <select value={brand} onChange={handleBrandChange}>
             <option value="">--Select Brand--</option>
             {CAR_BRANDS.map(b => (
-              <option key={b.name} value={b.name}>
+              <option key={b.name} value={b.name}> 
                 {b.name}
               </option>
             ))}
           </select>
         </label>
+
         {brand && (
           <label>
             Choose a car model:
@@ -87,6 +89,7 @@ function CarbonCalculator() {
             </select>
           </label>
         )}
+
         {model && (
           <label>
             Distance driven (km):
@@ -95,7 +98,9 @@ function CarbonCalculator() {
         )}
         <button type="submit">Calculate</button>
       </form>
+      
       {result && <p>Carbon emission: {result}</p>}
+
     </div>
   );
 }

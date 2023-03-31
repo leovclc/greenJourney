@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Quiz from './quiz/Quiz';
 import HomePage from './pages/HomePage';
 import Information from './pages/Information';
+import Chart from './pages/Chart';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         </Route>
 
         <Route path="/information">
+          <Chart></Chart>
         
         </Route>
 

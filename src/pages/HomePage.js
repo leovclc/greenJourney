@@ -1,12 +1,7 @@
 import React from 'react';
 import './HomePage.css';
-
-// Import components for different sections of the page
-
-
-
-// Import background image
 import bgImage from './background-image.jpg';
+import image1 from './image1.jpg';
 
 function HomePage() {
   return (
