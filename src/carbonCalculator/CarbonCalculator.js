@@ -73,11 +73,11 @@ function CarbonCalculator() {
 
   return (
     <div className={styles['carbon-calculator-container']}>
-
+    <div className={styles['form-container']}>
       <form onSubmit={handleSubmit}>
-        <label>
+        <label className={styles.label}>
           Choose a vehicle type:
-          <select value={brand} onChange={handleBrandChange}>
+          <select value={brand} onChange={handleBrandChange} className={styles.select}>
             <option value="">--Select Brand--</option>
             {CAR_BRANDS.map(b => (
               <option key={b.name} value={b.name}> 
@@ -88,9 +88,9 @@ function CarbonCalculator() {
         </label>
 
         {brand && (
-          <label>
+          <label className={styles.label}>
             Choose a car model:
-            <select value={model} onChange={handleModelChange}>
+            <select value={model} onChange={handleModelChange} className={styles.select}>
               <option value="">--Select Model--</option>
               {CAR_BRANDS.find(b => b.name === brand)?.models.map(m => (
                 <option key={m.name} value={m.name}>
@@ -102,20 +102,27 @@ function CarbonCalculator() {
         )}
 
         {model && (
-          <label>
+          <label className={styles.label} >
             Distance driven (km):
-            <input type="number" value={distance} onChange={handleDistanceChange} />
+            <input type="number" value={distance} onChange={handleDistanceChange} className={styles.select} />
           </label>
         )}
+        <div className={styles['button-container']}>
         <button type="submit">Calculate</button>
+        </div>
       </form>
+      </div>
       
+      <div className={styles['form-container']}> 
       {result && (
         <>
           <p>Carbon emission: {result}</p>
           {suggestion && <p className="suggestion">{suggestion}</p>}
         </>
       )}
+      </div>
+
+
 
     </div>
   );
