@@ -108,7 +108,7 @@ function CarbonCalculator() {
           </label>
         )}
         <div className={styles['button-container']}>
-        <button type="submit">Calculate</button>
+        <button type="submit" className={styles.button}>Calculate</button>
         </div>
       </form>
       </div>
