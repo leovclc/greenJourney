@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './CarbonCalculator.module.css';
-
+import audiImage from './audi.jpg';
+import arucaImage from './aruca.jpg';
 
 const CAR_BRANDS = [
   {
@@ -111,6 +112,11 @@ function CarbonCalculator() {
         <button type="submit" className={styles.button}>Calculate</button>
         </div>
       </form>
+      </div>
+
+      <div className={styles['image-container']}>
+      {brand === "AUDI" && <img src={audiImage} alt="Audi" />}
+      {brand === "ACURA" && <img src={arucaImage} alt="Aruca" />}
       </div>
       
       <div className={styles['form-container']}> 
