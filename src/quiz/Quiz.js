@@ -91,9 +91,16 @@ const Quiz = () => {
             <label htmlFor={`option-${index}`}>{option}</label>
           </div>
         ))}
+
+        <div className={styles['button-container']}>
         <button type="button" onClick={handleSubmit} disabled={selectedOption === -1}>
           Submit
         </button>
+        </div>
+
+        <div>
+          
+        </div>
       </form>
       {showAnswer && (
         <div>
@@ -106,7 +113,9 @@ const Quiz = () => {
             </p>
           )}
           {currentQuestion < questions.length - 1 ? (
+            <div className={styles['button-container']}>
             <button onClick={handleNext}>Next Question</button>
+            </div>
           ) : (
             <p>You have completed the quiz.</p>
           )}
