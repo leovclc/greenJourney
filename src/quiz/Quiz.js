@@ -1,73 +1,117 @@
-import React, { useState } from "react";
-import './Quiz.css';
+import React, { useState } from 'react';
+import styles from './Quiz.module.css';
 
 const Quiz = () => {
-  const [answer, setAnswer] = useState("");
-  const [correctAnswer, setCorrectAnswer] = useState("A");
-  const [isCorrect, setIsCorrect] = useState(false);
-  const [showResult, setShowResult] = useState(false);
-
-  const checkAnswer = () => {
-    if (answer === correctAnswer) {
-      setIsCorrect(true);
-    } else {
-      setIsCorrect(false);
+  const questions = [
+    {
+      question: 'What is the best definition of greenhouse gases?',
+      options: [
+        'Gases in the atmosphere that traps heat. The gases consist of carbon dioxide, methane and many more.',
+        'Gases that are produced from the plants in Greenhouse/glasshouse.',
+        'Gases that are positively impacting the earth\'s atmosphere.',
+        'None of the above'
+      ],
+      correctAnswer: 0
+    },
+    {
+      question: 'What are the causes of carbon emission in Australia ranked?',
+      options: [
+        'Energy production → Transport → Agriculture → waste',
+        'Transport → Energy production → Agriculture → waste',
+        'Agriculture → Energy production → Transport → Waste',
+        'Waste → Agriculture → Energy Production → Transport'
+      ],
+      correctAnswer: 0
+    },
+    {
+      question: 'Estimate how much carbon emission Australia produced.',
+      options: [
+        'Less than 200 Metric Tons',
+        '200 to 400 Metric Tons',
+        '400 to 600 Metric Tons',
+        'More than 600 Metric Tons'
+      ],
+      correctAnswer: 2
+    },
+    {
+      question: 'How much percentage (%) did transportation contribute to carbon emissions in Australia alone?',
+      options: [
+        '5% to 10%',
+        '10% to 15%',
+        '15% to 20%',
+        'More than 20%'
+      ],
+      correctAnswer: 2
+    },
+    {
+      question: 'What are the negative effects of increasing carbon emission?',
+      options: [
+        'Heat Waves',
+        'Increased Sea Levels',
+        'Droughts',
+        'All of the above'
+      ],
+      correctAnswer: 3
     }
-    setShowResult(true);
+  ];
+
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [selectedOption, setSelectedOption] = useState(-1);
+  const [showAnswer, setShowAnswer] = useState(false);
+
+  const handleOptionChange = (e) => {
+    setSelectedOption(parseInt(e.target.value));
   };
 
-  const resetQuiz = () => {
-    setShowResult(false);
-    setAnswer("");
+  const handleSubmit = () => {
+    setShowAnswer(true);
+  };
+
+  const handleNext = () => {
+    setCurrentQuestion(currentQuestion + 1);
+    setSelectedOption(-1);
+    setShowAnswer(false);
   };
 
   return (
-    <div className="quiz-wrapper">
-      <div className="quiz-container">
-        <img src="https://p4.itc.cn/images01/20210120/b01d37cc8fea4fe1932786fbad66e5e6.png" alt="小轿车" />
-        <h2>小型轿车每小时的碳排放量大概多少？</h2>
-        <label>
-          <input
-            type="radio"
-            name="answer"
-            value="A"
-            onChange={(e) => setAnswer(e.target.value)}
-          />
-          1
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="answer"
-            value="B"
-            onChange={(e) => setAnswer(e.target.value)}
-          />
-          2
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="answer"
-            value="C"
-            onChange={(e) => setAnswer(e.target.value)}
-          />
-          3
-        </label>
-        <br />
-        <button onClick={checkAnswer}>Submit</button>
-        <br />
-        {showResult && (
-          <div>
-            <p>
-              Your answer: {answer}, {isCorrect ? "correct" : "incorrect"}
-            </p>
-            <p>
-              The correct answer is: {correctAnswer}
-            </p>
-            <button onClick={resetQuiz}>Reset Quiz</button>
+    <div className={styles.quiz}>
+      <h1>Quiz</h1>
+      <p className="question">{questions[currentQuestion].question}</p>
+      <form>
+        {questions[currentQuestion].options.map((option, index) => (
+          <div key={index} className="option">
+            <input
+              type="radio"
+              id={`option-${index}`}
+              name="option"
+              value={index}
+              checked={selectedOption === index}
+              onChange={handleOptionChange}
+            />
+            <label htmlFor={`option-${index}`}>{option}</label>
           </div>
-        )}
-      </div>
+        ))}
+        <button type="button" onClick={handleSubmit} disabled={selectedOption === -1}>
+          Submit
+        </button>
+      </form>
+      {showAnswer && (
+        <div>
+          {selectedOption === questions[currentQuestion].correctAnswer ? (
+            <p>Correct!</p>
+          ) : (
+            <p>
+              Incorrect. The correct answer is:{' '}
+              {questions[currentQuestion].options[questions[currentQuestion].correctAnswer]}
+            </p>
+          )}
+          {currentQuestion < questions.length - 1 ? (
+            <button onClick={handleNext}>Next Question</button>
+          ) : (
+            <p>You have completed the quiz.</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };

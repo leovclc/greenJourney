@@ -19,7 +19,7 @@ function App() {
         <Route exact path="/">
           <div>            
              <HomePage></HomePage>
-             <Information></Information>      
+                   
           </div>
         </Route>
 

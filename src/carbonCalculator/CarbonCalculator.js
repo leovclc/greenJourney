@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './CarbonCalculator.css';
+import styles from './CarbonCalculator.module.css';
 
 
 const CAR_BRANDS = [
@@ -34,7 +34,8 @@ function CarbonCalculator() {
   const [model, setModel] = useState("");
   const [distance, setDistance] = useState("");
   const [result, setResult] = useState("");
-
+  const [suggestion, setSuggestion] = useState("");
+  
   function handleBrandChange(event) {
     setBrand(event.target.value);
     setModel("");
@@ -48,20 +49,30 @@ function CarbonCalculator() {
     setDistance(event.target.value);
   }
 
+  function getSuggestion(carbonTotal) {
+    if (carbonTotal > 1000) {
+      return "Consider carpooling, using public transportation, or switching to an electric or hybrid vehicle to reduce your carbon emissions.";
+    }
+    return "";
+  }
+
+
   function handleSubmit(event) {
     event.preventDefault();
-    const carModel = CAR_BRANDS.find(b => b.name === brand)?.models.find(m => m.name === model);//find the model
+    const carModel = CAR_BRANDS.find(b => b.name === brand)?.models.find(m => m.name === model); // find the model
     if (carModel && distance) {
       const carbonEmission = carModel.emission;
       const carbonTotal = carbonEmission * distance;
       setResult(`${carbonTotal} g`);
+      setSuggestion(getSuggestion(carbonTotal));
     } else {
-      setResult("Please select brand, model and distance");
+      setResult("Please select brand, model, and distance");
+      setSuggestion("");
     }
   }
 
   return (
-    <div>
+    <div className={styles['carbon-calculator-container']}>
 
       <form onSubmit={handleSubmit}>
         <label>
@@ -99,7 +110,12 @@ function CarbonCalculator() {
         <button type="submit">Calculate</button>
       </form>
       
-      {result && <p>Carbon emission: {result}</p>}
+      {result && (
+        <>
+          <p>Carbon emission: {result}</p>
+          {suggestion && <p className="suggestion">{suggestion}</p>}
+        </>
+      )}
 
     </div>
   );
