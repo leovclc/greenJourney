@@ -10,6 +10,7 @@ import Quiz from './quiz/Quiz';
 import HomePage from './pages/HomePage';
 import Information from './pages/Information';
 import Chart from './pages/Chart';
+import Home from './pages/Home';
 
 function App() {
   return (
@@ -17,9 +18,10 @@ function App() {
       <NavigationBar />
       <Switch>
         <Route exact path="/">
-          <div>            
-             <HomePage></HomePage>
-                   
+          <div>
+                        
+             <Home></Home>
+             <HomePage></HomePage>    
           </div>
         </Route>
 
@@ -31,11 +33,11 @@ function App() {
           </div>         
         </Route>
 
-        <Route path="/travel">
+        <Route path="/quiz">
           <Quiz></Quiz>
         </Route>
         
-        <Route path="/other">
+        <Route path="/travel">
         <Weather></Weather> 
         </Route>
 

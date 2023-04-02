@@ -12,10 +12,10 @@ function NavigationBar() {
           <a href="/footprint">Trace</a>
         </li>
         <li>
-          <a href="/travel">Travel</a>
+          <a href="/quiz">Quiz</a>
         </li> 
         <li>
-          <a href="/other">Other</a>
+          <a href="/travel">Travel</a>
         </li>  
         <li>
           <a href="/information">Information</a>
