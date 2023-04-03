@@ -23,11 +23,7 @@ function App() {
       <NavigationBar />
       <Switch>
         <Route exact path="/">
-          <div>
-                        
-             <Home></Home>
-             <HomePage></HomePage>    
-          </div>
+             <HomePage></HomePage>
         </Route>
 
         <Route path="/footprint">

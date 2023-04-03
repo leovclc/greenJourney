@@ -1,9 +1,11 @@
 import './NavigationBar.css';
 import React from 'react';
+import icon from "../pages/icon.jpg";
 
 function NavigationBar() {
   return (
     <nav>
+      <img src={icon}/>
       <ul>
         <li>
           <a href="/">Home</a>

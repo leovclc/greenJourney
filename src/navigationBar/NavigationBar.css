@@ -3,11 +3,11 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
   }
   
   li {
     float: left;
+    margin-right: 40px;
   }
   
   li a {
@@ -16,8 +16,24 @@ ul {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
   }
   
   li a:hover {
-    background-color: #111;
+    color: #3862B2;
+    background-color: grey;
+  }
+
+  nav{
+    background-color: #333;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    background-color: #18234D
+  }
+
+  nav > img {
+      height: 90px;
+      margin-right: 500px;
   }
