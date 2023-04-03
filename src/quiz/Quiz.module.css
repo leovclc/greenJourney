@@ -1,55 +1,28 @@
 .quiz {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  h1 {
-    font-size: 2em;
-    margin-bottom: 1em;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 1em;
-  }
-  
-  input[type='radio'] {
-    margin-right: 8px;
-  }
-  
-  button {
-    background-color: #4caf50;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-    
-  }
-  
-  button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .button-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 1rem;
-  }
+.question {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.option {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.option input {
+  margin-right: 8px;
+}
