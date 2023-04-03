@@ -11,6 +11,7 @@ import HomePage from './pages/HomePage';
 import Information from './pages/Information';
 import Chart from './pages/Chart';
 import Home from './pages/Home';
+import TrafficMap from './pages/TrafficMap';
 
 function App() {
   return (
@@ -27,9 +28,14 @@ function App() {
 
         <Route path="/footprint">
           <div>
-            <CarbonCalculator>
+           <div className="App">
+             <h1>Melbourne Traffic</h1>
+             <TrafficMap />
+           </div>
 
+            <CarbonCalculator>
             </CarbonCalculator>
+            
           </div>         
         </Route>
 
