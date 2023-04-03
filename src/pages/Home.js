@@ -42,7 +42,7 @@ function Home() {
             <p>
             Join us and let us care about the health of the earth and leave a better and greener home for future generations. Because every small change will become a powerful force, and together push us towards a sustainable future.
             </p>
-            <button className={styles.button} onClick={() => window.location.href = '/other-page'}>
+            <button className={styles.button} onClick={() => window.location.href = '/information'}>
                 View
             </button>
           </div>
