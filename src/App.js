@@ -8,6 +8,7 @@ import Weather from './demoAPI/Weather';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Quiz from './quiz/Quiz';
 import HomePage from './pages/HomePage';
+import NewsPage from './news/NewsPage';
 import Information from './pages/Information';
 import Chart from './pages/Chart';
 import Home from './pages/Home';
@@ -24,6 +25,7 @@ function App() {
       <Switch>
         <Route exact path="/">
              <HomePage></HomePage>
+             <NewsPage></NewsPage>
         </Route>
 
         <Route path="/footprint">

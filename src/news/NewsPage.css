@@ -1,0 +1,6 @@
+.NewsPage{
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    background-color: black;
+}
