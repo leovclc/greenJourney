@@ -7,7 +7,8 @@ function Chart() {
 
   const [cityList, setCityList] = useState([]);
   const [selectCity, setSelectCity] = useState("");
-  const [cityEmissions, setCityEmissions] = useState(0);
+  const [cityEmissions, setCityEmissions] = useState([]);
+  const [years, setYears] = useState([]);
 
   useEffect(() => {
       fetch('http://localhost:8080/emissions/allCityName')
@@ -16,10 +17,13 @@ function Chart() {
         .catch(error => console.error(error));
     }, []);
     
-    const fetchEmissions = (cityName) => {
+    const fetchEmissions = (selectCity) => {
       fetch(`http://localhost:8080/emissions/cityInfo?cName=${selectCity}`)
         .then(response => response.json())
-        .then(data => setCityEmissions(data))
+        .then(data => {
+          setCityEmissions(data);
+          setYears(data.map(cityEmissionsArray => cityEmissionsArray.year));
+      })
         .catch(error => console.error(error));
     };
 
@@ -27,24 +31,19 @@ function Chart() {
       const cityName = event.target.value;
       setSelectCity(cityName);
       fetchEmissions(cityName);
-      const yearOfCity = [];
-      
+      console.log(cityEmissions);
     };
 
     const options = {
       title: {
-        text: 'Carbon Emission, 1990-2035',
+        text: 'Carbon Emission, start from 1990',
         align: 'center'
       },
       xAxis: {
         title: {
           text: 'Year'
         },
-        categories: [
-          
-          cityEmissions.map(cityEmissionsArray => cityEmissionsArray.year)
-          // '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017'
-        ]
+        categories: years
       },
       yAxis: {
         title: {
@@ -54,7 +53,10 @@ function Chart() {
       // Other Highcharts chart configuration options
       // ...
       series: [
-              
+        {
+          name:selectCity,
+          data:cityEmissions.map(cityEmissionsArray => cityEmissionsArray.cityEmission)
+        }
       // {
       //   name: 'VIC',
       //   data: [23.83946828, 24.87435139, 24.29237677, 24.27188087, 22.50049338, 19.87226706, 19.34438186, 19.28060015, 18.03386354, 17.44794226]
@@ -78,9 +80,10 @@ function Chart() {
     return (
       
       <div>
-        <label> Choose a City
+        <label> Choose a State
           <select value={selectCity} onChange={handleSelectCityChange}> 
-          <option value="">--Select City--</option>
+          <option value="">--Select State--</option>
+          <option value="see all">all</option>
             {cityList.map(city => (
               <option key={city} value={city}>{city}</option>
             ))}
