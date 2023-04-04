@@ -77,7 +77,7 @@ function CarbonCalculator() {
     <div className={styles['form-container']}>
       <form onSubmit={handleSubmit}>
         <label className={styles.label}>
-          Choose a vehicle type:
+          Choose The Brand:
           <select value={brand} onChange={handleBrandChange} className={styles.select}>
             <option value="">--Select Brand--</option>
             {CAR_BRANDS.map(b => (

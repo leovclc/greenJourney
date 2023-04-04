@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #c8dbe5;
+  
 }
 
 .question {
@@ -26,3 +28,15 @@
 .option input {
   margin-right: 8px;
 }
+
+.backgroundImage {
+  background-image: url('./background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: -1;
+}
+

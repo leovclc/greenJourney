@@ -26,18 +26,22 @@ function App() {
         <Route exact path="/">
              <HomePage></HomePage>
              <NewsPage></NewsPage>
+             
         </Route>
 
         <Route path="/footprint">
           <div>
            <div className="App">
              <h1>Melbourne Traffic</h1>
+             <h2 className= "font-size">current traffic conditions in Melbourne</h2>
              <TrafficMap />
            </div>
+           
 
-            <CarbonCalculator>
-            </CarbonCalculator>
-            
+           <div className="background">
+             <h1>Travel By Car</h1>
+             <CarbonCalculator></CarbonCalculator>
+           </div>                                   
           </div>         
         </Route>
 
@@ -51,9 +55,9 @@ function App() {
 
         <Route path="/information">
           <Chart></Chart>
+          <Quiz></Quiz>
           <CarbonEstimator></CarbonEstimator>
-
-        
+                
         </Route>
 
       </Switch>

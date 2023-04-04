@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: center; 
 }
 
 .App-logo {
@@ -41,4 +41,13 @@
   display: flex;
   justify-content: space-around;
   margin:50px;
+}
+
+.font-size{
+  font-size: 2rem;
+}
+
+.background{
+  text-align: center;
+  background-color: #c8dbe5;
 }

@@ -20,6 +20,7 @@
 
 .select {
   font-size: 0.9em;
+  
 }
 
 .label {
@@ -32,3 +33,6 @@
   margin-top: 1rem;
 }
 
+.background{
+  background-color: #c8dbe5;
+}
