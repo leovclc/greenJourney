@@ -1,8 +1,6 @@
 import React from 'react';
 import './HomePage.css';
-import bgImage from './background-image.jpg';
-import image1 from './image1.jpg';
-import homeVideo from '../videos/homeVideo.mp4';
+import homeVideo from '../videos/homeVideoEdited.mp4';
 import styles from './Home.module.css';
 
 function HomePage() {
