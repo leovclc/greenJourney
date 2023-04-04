@@ -1,6 +1,6 @@
 import React from 'react';
 import './HomePage.css';
-import homeVideo from '../videos/homeVideoSD.mp4';
+import homeVideo from '../videos/homeVideoEdited.mp4';
 import styles from './Home.module.css';
 
 function HomePage() {
