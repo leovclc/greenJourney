@@ -13,7 +13,7 @@ import Chart from './pages/Chart';
 import Home from './pages/Home';
 import TrafficMap from './pages/TrafficMap';
 import CarbonEstimator from './emission/CarbonEstimator';
-
+import TestForNew from './test/TestForNew';
 
 
 
@@ -54,6 +54,10 @@ function App() {
         
         </Route>
 
+        <Route path="/test">
+          <TestForNew></TestForNew>
+
+        </Route>
       </Switch>
     </Router>
   );

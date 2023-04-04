@@ -22,7 +22,6 @@ function NavigationBar() {
         <li>
           <a href="/information">Information</a>
         </li>
-           
       </ul>
     </nav>
   );
