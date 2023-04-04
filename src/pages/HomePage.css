@@ -40,7 +40,7 @@
     height:100vh;
     object-fit: cover;
 }
-/*
+
 .hero-video{
     background-color: #000;
     background-image: url("../images/video_background.png");
@@ -48,7 +48,7 @@
     background-size: cover;
     background-position: center;
 }
-*/
+
 .hero-text-box{
     grid-column:1/-1;
     grid-row:1/-1;
