@@ -11,12 +11,15 @@ const CarbonEstimator = () => {
   const [resultsList, setResultsList] = useState([]);
 
   const typeValues = {
-    car: 1,
-    motorbike: 2,
-    bus: 3,
-    transit_rail: 4,
-    large_airplane: 5,
-    small_airplane: 6,
+    large_car: 209.47,
+    medium_car: 170.61,
+    small_car:142.08,
+    motorbike: 102.89,
+    bus: 104.71,
+    transit_rail: 35.08,
+    large_airplane: 434.46,
+    small_airplane: 233.6,
+    electric_vehicle: 53.17
   };
 
   const handleChange = (e) => {
@@ -41,13 +44,19 @@ const CarbonEstimator = () => {
         <label htmlFor="type">Type:</label>
         <select className="select" name="type" id="type" value={formData.type} onChange={handleChange} required>
           <option value="">--Choose Type--</option>
-          <option value="car">Car</option>
+          <option value="large_car">Large Car</option>
+          <option value="medium_car">Medium Car</option>
+          <option value="small_car">Small Car</option>
           <option value="motorbike">Motorbike</option>
+          <option value="large_airplane">Large Airplane</option>
           <option value="bus">Bus</option>
           <option value="transit_rail">Transit Rail</option>
           <option value="large_airplane">Large Airplane</option>
           <option value="small_airplane">Small Airplane</option>
+          <option value="electric_vehicle">electric Vehicle</option>
         </select>
+       
+
         <br />
         <label htmlFor="distance">Distance (km):</label>
         <input

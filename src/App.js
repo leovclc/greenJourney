@@ -14,7 +14,7 @@ import Home from './pages/Home';
 import TrafficMap from './pages/TrafficMap';
 import CarbonEstimator from './emission/CarbonEstimator';
 import TestForNew from './test/TestForNew';
-
+import TransportPage from './TransportChart/TransportPage';
 
 
 function App() {
@@ -47,13 +47,20 @@ function App() {
         <Weather></Weather> 
         </Route>
 
-        <Route path="/information">
-          <Chart></Chart>
-          <CarbonEstimator></CarbonEstimator>
-
+        <Route path="/information/city">
+          <div> 
+            <Chart></Chart>
+            <Quiz></Quiz>
+          </div>
         
         </Route>
 
+        <Route path="/information/transport">
+        <div> 
+          <CarbonEstimator></CarbonEstimator>
+          <TransportPage></TransportPage>
+          </div>
+        </Route>
         <Route path="/test">
           <TestForNew></TestForNew>
 
