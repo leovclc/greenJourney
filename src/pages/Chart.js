@@ -13,25 +13,41 @@ function Chart() {
   useEffect(() => {
       fetch('http://localhost:8080/emissions/allCityName')
         .then(response => response.json())
-        .then(data => setCityList(data))
+        .then(data => {
+          const filteredCityList = data.filter(city => city !== 'test');
+          setCityList(filteredCityList);
+        })
         .catch(error => console.error(error));
     }, []);
     
     const fetchEmissions = (selectCity) => {
-      fetch(`http://localhost:8080/emissions/cityInfo?cName=${selectCity}`)
-        .then(response => response.json())
-        .then(data => {
-          setCityEmissions(data);
-          setYears(data.map(cityEmissionsArray => cityEmissionsArray.year));
-      })
-        .catch(error => console.error(error));
+      console.log(selectCity);
+      if (selectCity === "all") {
+        fetch(`http://localhost:8080/emissions/getAllCityInfo`)
+          .then(response => response.json())
+          .then(data => {
+            const filteredAllCityList = data.filter(city => city.cityName !== 'test');
+            setCityEmissions(filteredAllCityList)
+            console.log(data);
+            console.log(filteredAllCityList);
+          })
+          .catch(error => console.error(error));
+      } else
+      {
+        fetch(`http://localhost:8080/emissions/cityInfo?cName=${selectCity}`)
+          .then(response => response.json())
+          .then(data => {
+            setCityEmissions(data);
+            setYears(data.map(cityEmissionsArray => cityEmissionsArray.year));
+        })
+          .catch(error => console.error(error));
+      }
     };
 
     const handleSelectCityChange = (event) => {
       const cityName = event.target.value;
       setSelectCity(cityName);
       fetchEmissions(cityName);
-      console.log(cityEmissions);
     };
 
     const options = {
@@ -50,13 +66,20 @@ function Chart() {
           text: 'Carbon Emission (tonnes per capita)'
         }
       },
-      // Other Highcharts chart configuration options
-      // ...
-      series: [
-        {
-          name:selectCity,
-          data:cityEmissions.map(cityEmissionsArray => cityEmissionsArray.cityEmission)
-        }
+
+      series: selectCity === "all"
+      ? cityList.map(city => ({
+          name: city,
+          data: cityEmissions
+            .filter(cityEmissionsArray => cityEmissionsArray.cityName === city)
+            .map(cityEmissionsArray => cityEmissionsArray.cityEmission)
+        }))
+      : [
+          {
+            name: selectCity,
+            data: cityEmissions.map(cityEmissionsArray => cityEmissionsArray.cityEmission)
+          }
+        ]
       // {
       //   name: 'VIC',
       //   data: [23.83946828, 24.87435139, 24.29237677, 24.27188087, 22.50049338, 19.87226706, 19.34438186, 19.28060015, 18.03386354, 17.44794226]
@@ -74,7 +97,7 @@ function Chart() {
       //   data: [21.19074968, 19.03130477, 16.07568882, 14.60450126, 15.73557384, 15.70992144, 17.08915603, 16.30692444, 14.04385737, 12.81183598]
     //   }
     
-    ]
+    
     };
   
     return (
@@ -83,7 +106,7 @@ function Chart() {
         <label> Choose a State
           <select value={selectCity} onChange={handleSelectCityChange}> 
           <option value="">--Select State--</option>
-          <option value="see all">all</option>
+          <option value="all">all</option>
             {cityList.map(city => (
               <option key={city} value={city}>{city}</option>
             ))}
