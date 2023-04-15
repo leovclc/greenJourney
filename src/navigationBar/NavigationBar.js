@@ -22,8 +22,9 @@ function NavigationBar() {
         </li>
         {/* <li>
           <a href="/quiz">Quiz</a>
-        </li> 
-        <li>
+        </li>  */}
+
+        {/* <li>
           <a href="/travel">Travel</a>
         </li>   */}
         <li className="dropdown" onMouseEnter={handleDropdownToggle} onMouseLeave={handleDropdownToggle}>

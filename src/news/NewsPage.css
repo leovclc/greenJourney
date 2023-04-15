@@ -1,0 +1,17 @@
+.NewsList{
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    padding: 200px;
+}
+
+.NewsPage{
+    background-color: #18234D;
+}
+
+.NewsPage > h1{
+    text-align: center;
+    padding-top: 150px;
+    color: white;
+    font-size: 50px;
+}
